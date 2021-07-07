@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Center, VStack } from "@chakra-ui/react"
 import { Text, Input } from "@chakra-ui/react"
 import { Button } from "@chakra-ui/react"
@@ -8,15 +8,31 @@ import {
     FormLabel,
   } from "@chakra-ui/react"
 import { useSelector, useDispatch } from "react-redux"
-import { login } from './userSlice'
-import { useNavigate } from 'react-router'
+import { fetchUser, login } from './userSlice'
+import { useLocation, useNavigate } from 'react-router'
+import { fetchTimelinePost, fetchUserFriends } from '../Feed/feedSlice'
 
 function Signin() {
-    const state = useSelector(state => state.user)
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { state } = useLocation()
     const [ inputValues, setInputValues ] = useState({ email : "", password : ""})
+
     
+    useEffect(() => {
+        (async function (){
+            if(user.userLoggedIn){
+                try{
+                    await dispatch(fetchTimelinePost(user?.user[0]?._id))
+                    navigate(state?.from ? state.from : "/", { replace : true })
+                }catch(error){
+                    console.log(error)
+                }
+
+            }
+        })()
+    },[user.userLoggedIn, dispatch, navigate])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
