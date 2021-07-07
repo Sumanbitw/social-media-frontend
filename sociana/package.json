@@ -3,18 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.14.6",
+    "@chakra-ui/icons": "^1.0.13",
+    "@chakra-ui/react": "^1.6.4",
+    "@craco/craco": "^6.1.2",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
+    "framer-motion": "^4.1.17",
     "history": "^5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "react-redux": "^7.2.4",
     "react-router": "^6.0.0-beta.0",
     "react-router-dom": "^6.0.0-beta.0",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +46,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.",
+  "main": "index.js",
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.3.5",
+    "tailwindcss": "^2.2.4"
+  },
+  "author": "",
+  "license": "ISC"
 }
