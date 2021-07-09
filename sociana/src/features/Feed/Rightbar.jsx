@@ -28,14 +28,14 @@ function Rightbar() {
     },[dispatch, user.userLoggedIn, user?.user])
     return (
         <>
-        <Box bg="green.800" h="lg" w="40%">
+        <Box h="lg" w="40%">
             <Heading>
                 Online Friends
             </Heading>
             
                 {feed?.friends.map(friend => (
                     <>
-                    <Flex>  
+                    <Flex key={friend._id}>  
                     <Avatar 
                         size="sm"
                         name={friend?.name}

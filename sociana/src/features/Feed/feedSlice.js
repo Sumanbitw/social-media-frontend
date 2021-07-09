@@ -126,19 +126,15 @@ export const feedSlice = createSlice({
 
             const isPostLiked = likes.includes(user)
             console.log(isPostLiked)
+
+            const posts = state.posts.find(post => post._id === _id)
             
             if(isPostLiked){
-                state.posts.map(post => 
-                    post._id === _id
-                    ? { ...post, likes : post.likes.push(user)}
-                    : post
-                    )
-            }else{
-                state.posts.map(post => 
-                    post._id === _id 
-                    ? {...post, likes : post.likes.filter(like => console.log(like))}
-                    : post
-                    )
+                posts.likes.push(user)
+            }
+            else{
+                const like = posts.likes.indexOf(user)
+                posts.likes.splice(like,1)
             }
             
         },

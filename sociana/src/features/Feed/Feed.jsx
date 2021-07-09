@@ -19,21 +19,7 @@ function Feed() {
     // console.log(user.user[0]._id)
     // console.log(feed.posts)
 
-    useEffect(() => {
-        if(user.userLoggedIn !== null){
-            (async function(){
-                try{
-                    const result = await dispatch(fetchTimelinePost(user.user[0]._id))
-                    //  await dispatch(fetchUserPost(user?.userLoggedIn?.name)) 
-                    // await dispatch(fetchUserFriends())
-                   console.log(result)
-                }catch(error){
-                    console.log(error)
-                }
-            })()
-        }
-        return () => {}
-    },[dispatch, user.userLoggedIn, user.user])
+
 
     const handleNewPost = (event) => {
         setPostContent(event.target.value)
@@ -76,6 +62,22 @@ function Feed() {
             }
         ))
     }
+
+    useEffect(() => {
+        if(user.userLoggedIn !== null){
+            (async function(){
+                try{
+                    const result = await dispatch(fetchTimelinePost(user.user[0]._id))
+                    //  await dispatch(fetchUserPost(user?.userLoggedIn?.name)) 
+                    // await dispatch(fetchUserFriends())
+                   console.log(result)
+                }catch(error){
+                    console.log(error)
+                }
+            })()
+        }
+        return () => {}
+    },[])
 
 
     return (
@@ -128,6 +130,7 @@ function Feed() {
                 justifyContent="space-between" 
                 boxShadow="base"
                 key={post._id}
+                bgColor="gray.100"
                 >
                     <Text>{post?.text}</Text>
                     <Button 

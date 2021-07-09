@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { fetchUserFriends } from '../Feed/feedSlice'
-import { followUser, getUser, getUserFriends, unFollowUser } from './profileSlice'
+import { followUser, getUser, getUserFriends, searchUser, unFollowUser } from './profileSlice'
 
 function FriendsProfile() {
     const user = useSelector(state => state.user)
@@ -11,7 +11,9 @@ function FriendsProfile() {
     const profile = useSelector(state => state.profile)
     const dispatch = useDispatch()
     const { userId }  = useParams()
-    // console.log(profile.user)
+    console.log(profile.friend)
+
+    console.log(profile.profile)
 
     // const friends = feed.friends && feed.friends.find(friend => friend._id === userId )
     // console.log(friends)
@@ -22,7 +24,7 @@ function FriendsProfile() {
     //     })()
     // },[])
 
-    const isUserFollowed = user?.user[0]?.followings.includes(userId)
+    const isUserFollowed = profile?.friend[0]?.followers?.find(item => item === user?.user[0]?._id)
     console.log(isUserFollowed)
 
     const handleFollow = async(e) => {
