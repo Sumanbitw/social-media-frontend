@@ -82,8 +82,10 @@ function Feed() {
 
     return (
         <>
-        <Box width="full">
-            <Flex>
+        <Box 
+        marginLeft="64"
+        width="container.sm">
+            <Flex alignContent="center" justifyContent="center">
                 <Link to={`/profile/${user?.user[0]?.name}`}>
                 <Avatar
                 m={5}
@@ -128,9 +130,8 @@ function Feed() {
                 d='flex' 
                 flexDirection="column" 
                 justifyContent="space-between" 
-                boxShadow="base"
-                key={post._id}
-                bgColor="gray.100"
+                boxShadow="lg"
+                key={post._id} 
                 >
                     <Text>{post?.text}</Text>
                     <Button 

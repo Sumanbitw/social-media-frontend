@@ -13,6 +13,7 @@ import Profile from './features/Profile/Profile';
 import ProfileEdit from './features/Profile/ProfileEdit';
 import FriendsProfile from './features/Profile/FriendsProfile';
 import Search from './features/Profile/Search';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
   const dispatch = useDispatch()
@@ -42,6 +43,7 @@ function setupAuthExceptionHandler(dispatch, navigate) {
 
   return (
     <div className="App">
+      <Navbar/>
       <Routes>
         <PrivateRoute path="/" element = {<Home/>} />
         <Route path="/login" element = {<Signin/>} />

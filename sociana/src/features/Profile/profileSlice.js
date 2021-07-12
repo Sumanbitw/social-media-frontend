@@ -7,6 +7,12 @@ export const getUser = createAsyncThunk('profile/getUser', async(userId) => {
     return response.data 
 })
 
+export const getUserProfileByUserName = createAsyncThunk('profile/getUserProfileByUserName', async(username) => {
+    const response = await axios.get(`${API_URL}/posts/profile/${username}`)
+    console.log(response)
+    return response.data
+})
+
 export const searchUser = createAsyncThunk('profile/searchUser', async(name) => {
     const response = await axios.get(`${API_URL}/search/${name}`)
     // console.log(response)
@@ -50,6 +56,7 @@ export const profileSlice = createSlice({
         user : [],
         friend : [],
         profile : [],
+        posts : [],
         error : null,
         status : "idle"
     },
@@ -116,7 +123,21 @@ export const profileSlice = createSlice({
 
         [unFollowUser.rejected] : (state) => {
             state.status = "failed"
+        },
+
+        [getUserProfileByUserName.pending] : (state) => {
+            state.status = "pending"
+        },
+
+        [getUserProfileByUserName.fulfilled] : (state,action) => {
+            state.status = "succeeded"
+            state.posts = state.posts.concat(action.payload)
+        },
+
+        [getUserProfileByUserName.rejected] : (state, action) => {
+            state.status = "failed"
         }
+
     }
 })
 

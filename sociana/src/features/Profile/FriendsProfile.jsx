@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { fetchUserFriends } from '../Feed/feedSlice'
-import { followUser, getUser, getUserFriends, searchUser, unFollowUser } from './profileSlice'
+import { followUser, getUser, getUserFriends, getUserProfileByUserName, searchUser, unFollowUser } from './profileSlice'
 
 function FriendsProfile() {
     const user = useSelector(state => state.user)
@@ -11,21 +11,10 @@ function FriendsProfile() {
     const profile = useSelector(state => state.profile)
     const dispatch = useDispatch()
     const { userId }  = useParams()
-    console.log(profile.friend)
 
-    console.log(profile.profile)
-
-    // const friends = feed.friends && feed.friends.find(friend => friend._id === userId )
-    // console.log(friends)
-
-    // useEffect(() => {
-    //     (async function getFriends(){
-    //         await dispatch(getUser(friends?._id))
-    //     })()
-    // },[])
 
     const isUserFollowed = profile?.friend[0]?.followers?.find(item => item === user?.user[0]?._id)
-    console.log(isUserFollowed)
+    
 
     const handleFollow = async(e) => {
         e.preventDefault()
@@ -46,6 +35,8 @@ function FriendsProfile() {
             }
         }))
     }
+
+    
 
     return (
         <>
@@ -79,7 +70,8 @@ function FriendsProfile() {
                  </Button>
                 : <Button onClick={handleFollow}>
                     Follow  
-                  </Button>}
+                  </Button>
+                }
             </Center>
         </Box>
         </>

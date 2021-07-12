@@ -10,10 +10,10 @@ import { FaHome } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router'
 import { Link } from "react-router-dom"
-import { logout } from '../user/userSlice'
+import { logout } from '../../features/user/userSlice'
 import axios from 'axios'
 import { API_URL } from '../../utility'
-import { searchUser } from '../Profile/profileSlice'
+import { searchUser } from '../../features/Profile/profileSlice'
 
 
 
@@ -56,6 +56,8 @@ function Navbar() {
         position="sticky"
         top="0"
         zIndex="sticky"
+        boxShadow="lg"
+        backgroundColor="whiteAlpha.700"
         >
             <Box>
                 <Heading as="h2" size="md" p={2} mx="3" color="gray.400">
