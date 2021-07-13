@@ -17,9 +17,24 @@ function Feed() {
     const dispatch = useDispatch()
 
     // console.log(user.user[0]._id)
-    // console.log(feed.posts)
+    console.log(feed.friends)
+    
+    // const getUserNameFromId = (userId) => {
+        
+    //     console.log(feed?.friends.find(friendObj => friendObj._id === userId))
 
+    //     // return feed?.friends.find(friendObj => friendObj._id === userId)?.name
+    // }
 
+    useEffect(() => {
+        if(user.userLoggedIn !== null){
+            (async function(){
+                const response = await dispatch(fetchUserFriends(user?.user[0]?._id))
+                console.log(response)
+    
+            })()
+        }
+    },[dispatch, user.userLoggedIn, user?.user])
 
     const handleNewPost = (event) => {
         setPostContent(event.target.value)
@@ -133,6 +148,7 @@ function Feed() {
                 boxShadow="lg"
                 key={post._id} 
                 >
+                    {/* <Text>{` Name : ${feed.friends && getUserNameFromId(post.user)}`}</Text> */}
                     <Text>{post?.text}</Text>
                     <Button 
                     w={32}
